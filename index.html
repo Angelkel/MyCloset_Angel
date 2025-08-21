@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Closet Angel - Atendimento ao Cliente</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Título da Loja -->
+    <header class="store-header">
+        <h1 class="store-title">My Closet Angel</h1>
+    </header>
+
+    <!-- Navbar Horizontal -->
+    <nav class="main-navbar">
+        <div class="nav-container">
+            <a href="#" class="nav-item active" data-tab="atendimento">
+                <i class="fas fa-headset"></i>
+                Atendimento ao Cliente
+            </a>
+            <a href="#" class="nav-item disabled" data-tab="estoque">
+                <i class="fas fa-boxes"></i>
+                Estoque
+            </a>
+            <a href="#" class="nav-item disabled" data-tab="pedidos">
+                <i class="fas fa-shopping-cart"></i>
+                Pedidos
+            </a>
+        </div>
+    </nav>
+
+    <!-- Conteúdo Principal -->
+    <main class="main-content">
+        <!-- Aba Atendimento ao Cliente -->
+        <div id="atendimento" class="tab-content active">
+            <!-- Container Principal -->
+            <div class="content-container">
+                <!-- Painel Esquerdo - Lista de Mensagens -->
+                <div class="left-panel">
+                    <div class="panel-header">
+                        <h3>
+                            <i class="fas fa-users"></i>
+                            Agentes
+                            <i class="fas fa-chevron-down"></i>
+                        </h3>
+                        <div class="search-container">
+                            <input type="text" id="searchInput" placeholder="Buscar..." class="search-input">
+                            <i class="fas fa-search search-icon"></i>
+                        </div>
+                    </div>
+
+                    <!-- Filtros -->
+                    <div class="filters">
+                        <div class="filter-group">
+                            <label for="channelFilter">Canal:</label>
+                            <select id="channelFilter" class="filter-select" data-cy="canal-select">
+                                <option value="">Todos os canais</option>
+                                <option value="whatsapp">WhatsApp</option>
+                                <option value="telegram">Telegram</option>
+                                <option value="email">E-mail</option>
+                                <option value="instagram">Instagram</option>
+                            </select>
+                        </div>
+                        <div class="filter-group">
+                            <label for="statusFilter">Status:</label>
+                            <select id="statusFilter" class="filter-select" data-cy="status-select">
+                                <option value="">Todos os status</option>
+                                <option value="concluida">Concluídas</option>
+                                <option value="em-andamento">Em Andamento</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Lista de Mensagens -->
+                    <div class="messages-list" id="messagesList" data-cy="messages-list">
+                        <!-- As mensagens serão carregadas dinamicamente aqui -->
+                    </div>
+                </div>
+
+                <!-- Painel Direito - Chat -->
+                <div class="right-panel">
+                    <div class="chat-header" id="chatHeader">
+                        <div class="chat-user-info">
+                            <div class="user-avatar" id="chatUserAvatar">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <div class="user-details">
+                                <h4 id="chatUserName">Selecione uma conversa</h4>
+                                <span id="chatUserStatus">Nenhuma conversa selecionada</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="chat-messages" id="chatMessages">
+                        <div class="welcome-message">
+                            <i class="fas fa-comments"></i>
+                            <p>Selecione uma conversa para começar</p>
+                        </div>
+                    </div>
+
+                    <!-- Área de Resposta -->
+                    <div class="chat-reply" id="chatReply" style="display: none;">
+                        <div class="reply-container">
+                            <div class="reply-input-container">
+                                <textarea 
+                                    id="replyInput" 
+                                    class="reply-input" 
+                                    placeholder="Digite sua resposta..." 
+                                    maxlength="255"
+                                    rows="3"
+                                ></textarea>
+                                <div class="reply-actions">
+                                    <span class="char-counter" id="charCounter">0/255</span>
+                                    <button class="send-btn" id="sendBtn" disabled>
+                                        <i class="fas fa-paper-plane"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            <!-- Botões de Ação -->
+                            <div class="reply-action-buttons">
+                                <button class="action-btn conclude-btn" id="concludeBtn">
+                                    <i class="fas fa-check"></i>
+                                    Concluir
+                                </button>
+                                <button class="action-btn in-progress-btn" id="inProgressBtn">
+                                    <i class="fas fa-clock"></i>
+                                    Em Andamento
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Abas Desabilitadas -->
+        <div id="estoque" class="tab-content">
+            <div class="disabled-tab">
+                <i class="fas fa-tools"></i>
+                <h2>Funcionalidade em Desenvolvimento</h2>
+                <p>O módulo de Estoque estará disponível em breve.</p>
+            </div>
+        </div>
+
+        <div id="pedidos" class="tab-content">
+            <div class="disabled-tab">
+                <i class="fas fa-tools"></i>
+                <h2>Funcionalidade em Desenvolvimento</h2>
+                <p>O módulo de Pedidos estará disponível em breve.</p>
+            </div>
+        </div>
+    </main>
+
+    <!-- Ícones Flutuantes -->
+    <div class="floating-icons">
+        <div class="floating-icon whatsapp-icon">
+            <i class="fab fa-whatsapp"></i>
+        </div>
+        <div class="floating-icon instagram-icon">
+            <i class="fab fa-instagram"></i>
+        </div>
+        <div class="floating-icon new-message-icon">
+            <i class="fas fa-plus"></i>
+        </div>
+        <div class="floating-icon document-icon">
+            <i class="fas fa-file-alt"></i>
+        </div>
+        <div class="floating-icon email-icon">
+            <i class="fas fa-envelope"></i>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html> 

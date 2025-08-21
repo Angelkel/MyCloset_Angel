@@ -1,0 +1,17 @@
+{
+  "name": "portfolio_mycloset",
+  "version": "1.0.0",
+  "description": "Uma aplicação web moderna e elegante para gerenciamento de atendimento ao cliente, com interface feminina e clean. Desenvolvida especificamente para lojas de roupas femininas, oferece uma experiência completa de atendimento multi-canal.",
+  "main": "script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "-": "^0.0.1",
+    "cypress": "^14.5.1",
+    "cypress-mochawesome-reporter": "^4.0.0"
+  }
+}
