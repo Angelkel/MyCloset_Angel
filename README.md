@@ -5,7 +5,7 @@ Uma aplicação web moderna e elegante para gerenciamento de atendimento ao clie
 ## 📑 Documentação Principal
 
 Bem-vinda à documentação do **My Closet Angel**  
-Aqui você encontra os principais documentos do projeto:
+Segue principais documentos do projeto:
 
 - 👗 **[Requisitos Funcionais](https://github.com/Angelkel/MyCloset_Angel/wiki/Requisitos-Funcionais)**
 - 🛠️ **[Requisitos Não Funcionais](https://github.com/Angelkel/MyCloset_Angel/wiki/Requisitos-Nao-Funcionais)**
