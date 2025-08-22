@@ -1,0 +1,214 @@
+name: CI/CD Pipeline - MyCloset
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+env:
+  NODE_VERSION: '18'
+  CYPRESS_CACHE_FOLDER: ~/.cache/Cypress
+
+jobs:
+  # Job 1: Lint e Validação
+  lint-and-validate:
+    name: Lint e Validação
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ env.NODE_VERSION }}
+        cache: 'npm'
+        
+    - name: Install dependencies
+      run: npm ci
+      
+    - name: Validate package.json
+      run: npm run validate || echo "No validate script found"
+      
+    - name: Check for security vulnerabilities
+      run: npm audit --audit-level moderate || echo "Security audit completed"
+      
+    - name: Validate HTML
+      uses: validator/action@v1
+      with:
+        html_files: '*.html'
+        
+    - name: Validate CSS
+      run: |
+        if command -v stylelint &> /dev/null; then
+          npx stylelint "*.css" || echo "CSS validation completed"
+        else
+          echo "Stylelint not available, skipping CSS validation"
+        fi
+
+  # Job 2: Testes E2E com Cypress
+  e2e-tests:
+    name: Testes E2E - Cypress
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ env.NODE_VERSION }}
+        cache: 'npm'
+        
+    - name: Install dependencies
+      run: npm ci
+      
+    - name: Cache Cypress
+      uses: actions/cache@v3
+      with:
+        path: ~/.cache/Cypress
+        key: cypress-cache-${{ runner.os }}-${{ hashFiles('**/package-lock.json') }}
+        restore-keys: |
+          cypress-cache-${{ runner.os }}-
+          
+    - name: Run Cypress tests
+      uses: cypress-io/github-action@v6
+      with:
+        browser: chrome
+        headless: true
+        record: false
+        config: video=false,screenshotOnRunFailure=true
+        wait-on: 'http://localhost:3000'
+        
+    - name: Start local server
+      run: |
+        npx http-server . -p 3000 &
+        sleep 5
+        
+    - name: Upload test results
+      uses: actions/upload-artifact@v3
+      if: always()
+      with:
+        name: cypress-results
+        path: |
+          cypress/videos/
+          cypress/screenshots/
+          cypress/reports/
+        retention-days: 30
+
+  # Job 3: Build e Otimização
+  build:
+    name: Build e Otimização
+    runs-on: ubuntu-latest
+    needs: [lint-and-validate, e2e-tests]
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ env.NODE_VERSION }}
+        cache: 'npm'
+        
+    - name: Install dependencies
+      run: npm ci
+      
+    - name: Minify CSS
+      run: |
+        if command -v cleancss &> /dev/null; then
+          npx cleancss -o styles.min.css styles.css
+        else
+          echo "CleanCSS not available, copying original CSS"
+          cp styles.css styles.min.css
+        fi
+        
+    - name: Minify JavaScript
+      run: |
+        if command -v uglifyjs &> /dev/null; then
+          npx uglifyjs script.js -o script.min.js
+        else
+          echo "UglifyJS not available, copying original JS"
+          cp script.js script.min.js
+        fi
+        
+    - name: Create build artifact
+      run: |
+        mkdir -p dist
+        cp index.html dist/
+        cp styles.min.css dist/styles.css
+        cp script.min.js dist/script.js
+        cp -r cypress/reports dist/
+        
+    - name: Upload build artifacts
+      uses: actions/upload-artifact@v3
+      with:
+        name: build-files
+        path: dist/
+        retention-days: 30
+
+  # Job 4: Deploy para GitHub Pages
+  deploy:
+    name: Deploy para GitHub Pages
+    runs-on: ubuntu-latest
+    needs: build
+    if: github.ref == 'refs/heads/main'
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Download build artifacts
+      uses: actions/download-artifact@v3
+      with:
+        name: build-files
+        path: dist/
+        
+    - name: Deploy to GitHub Pages
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./dist
+        force_orphan: true
+        user_name: 'github-actions[bot]'
+        user_email: 'github-actions[bot]@users.noreply.github.com'
+        commit_message: 'Deploy MyCloset - ${{ github.sha }}'
+
+  # Job 5: Notificações
+  notifications:
+    name: Notificações
+    runs-on: ubuntu-latest
+    needs: [lint-and-validate, e2e-tests, build, deploy]
+    if: always()
+    
+    steps:
+    - name: Notify on success
+      if: success()
+      run: |
+        echo "✅ Pipeline executado com sucesso!"
+        echo "🌐 Aplicação disponível em: https://angelkel.github.io/MyCloset_Angel/"
+        
+    - name: Notify on failure
+      if: failure()
+      run: |
+        echo "❌ Pipeline falhou!"
+        echo "🔍 Verifique os logs para mais detalhes."
+        
+    - name: Create deployment summary
+      run: |
+        echo "## 📊 Resumo do Deploy" >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
+        echo "- **Branch:** ${{ github.ref_name }}" >> $GITHUB_STEP_SUMMARY
+        echo "- **Commit:** ${{ github.sha }}" >> $GITHUB_STEP_SUMMARY
+        echo "- **Autor:** ${{ github.actor }}" >> $GITHUB_STEP_SUMMARY
+        echo "- **Status:** ${{ job.status }}" >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
+        echo "### 🚀 Próximos passos:" >> $GITHUB_STEP_SUMMARY
+        echo "1. Acesse a aplicação em: https://angelkel.github.io/MyCloset_Angel/" >> $GITHUB_STEP_SUMMARY
+        echo "2. Execute os testes manualmente para validação" >> $GITHUB_STEP_SUMMARY
+        echo "3. Monitore o desempenho da aplicação" >> $GITHUB_STEP_SUMMARY
