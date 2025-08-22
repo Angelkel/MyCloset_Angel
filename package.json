@@ -4,7 +4,13 @@
   "description": "Uma aplicação web moderna e elegante para gerenciamento de atendimento ao cliente, com interface feminina e clean. Desenvolvida especificamente para lojas de roupas femininas, oferece uma experiência completa de atendimento multi-canal.",
   "main": "script.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "cypress run",
+    "test:open": "cypress open",
+    "test:headless": "cypress run --headless",
+    "build": "echo 'Build completed'",
+    "validate": "npm audit --audit-level moderate",
+    "start": "npx http-server . -p 3000",
+    "dev": "npx http-server . -p 3000 --cors"
   },
   "keywords": [],
   "author": "",

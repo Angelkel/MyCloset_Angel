@@ -1,121 +1,196 @@
-# ❣️👗 My Closet Angel – Sistema de Atendimento ao Cliente
+# MyCloset - Sistema de Atendimento ao Cliente
 
-Projeto desenvolvido como parte do portfólio da Mentoria de Testes de Software 2.0, integrando conceitos de **Omnichannel** e **Chatbot** em uma aplicação web para lojas de roupas femininas. O sistema permite atendimento ao cliente via WhatsApp, E-mail, Instagram e Telegram, com funcionalidades completas de filtragem, chat e automação de testes.
+Uma aplicação web moderna e elegante para gerenciamento de atendimento ao cliente, com interface feminina e clean. Desenvolvida especificamente para lojas de roupas femininas, oferece uma experiência completa de atendimento multi-canal.
 
-## 📝 Sobre o Projeto
+## 🚀 Funcionalidades
 
-A proposta é simular um ambiente real de atendimento omnichannel, onde clientes podem ser atendidos por múltiplos canais, com histórico, filtros e ações rápidas. O projeto foi planejado, especificado, implementado e testado seguindo boas práticas de engenharia de software e automação de testes.
-
-### 🔗 [Wiki do Projeto](https://github.com/Angelkel/MyCloset_Angel/wiki)
-
-## 📋 Fases do Projeto
-
-- **Fase 01 – Planejamento:** Overview do projeto com mapas mentais e definição das atividades.
-- **Fase 02 – Análise de Requisitos:** Levantamento de requisitos, critérios de aceite, DoR e DoD.
-- **Fase 03 – Implementação:** Desenvolvimento da aplicação web com HTML, CSS e JavaScript, utilizando IA e ferramentas modernas.
-- **Fase 04 – Planejamento de Testes:** Elaboração do plano de testes, casos de teste e critérios de aceitação.
-- **Fase 05 – Execução de Testes:** Execução de testes funcionais, não funcionais e exploratórios.
-- **Fase 06 – Automação de Testes:** Automação dos cenários de teste com Cypress.
-
-## 💻 Funcionalidades Principais
-
-- **Atendimento ao Cliente Omnichannel:** WhatsApp, E-mail, Instagram, Telegram
-- **Chat Interativo:** Leitura e resposta de mensagens, histórico completo
-- **Filtros Avançados:** Por canal, status e busca por texto
-- **Ações Rápidas:** Concluir atendimento, marcar como em andamento
-- **Notificações Visuais:** Feedback para todas as ações
-- **Design Responsivo:** Interface adaptável para desktop, tablet e mobile
-- **Dados Realistas:** 20 conversas de exemplo com múltiplos canais e status
-
-## 🧪 Automação de Testes (Cypress)
-
-- Testes automatizados cobrindo:
-  - Filtros por canal (WhatsApp, E-mail, Instagram, Telegram)
-  - Filtros por status (Concluída, Em Andamento)
-  - Seleção de mensagem e exibição do chat
-  - Limite do campo de resposta (255 caracteres)
-  - Envio de mensagem e atualização do chat
-- Estrutura de testes na pasta `cypress/e2e/`
-- Execução dos testes:
-  ```sh
-  npx cypress open
-  # ou
-  npx cypress run
-  ```
-
-## 📊 Resultados dos Testes Automatizados (Cypress + Mochawesome)
-
-- **Total de testes:** 9
-- **Passaram:** 9
-- **Falharam:** 0
-- **Pendentes/Skip:** 0
-- **Duração total:** ~9 segundos
-- **Última execução:** 20/08/2025
-
-### Como visualizar o relatório HTML
-
-Após rodar os testes com:
-```sh
-npx cypress run
-```
-O relatório será gerado em:
-```
-cypress/reports/html/index.html
-```
-Abra esse arquivo no navegador para ver detalhes dos cenários, passos e evidências.
-
-#### Exemplos de cenários cobertos:
-- Filtro por canal: WhatsApp, E-mail, Instagram, Telegram
-- Filtro por status: Concluída, Em Andamento
-- Seleção de mensagem exibe chat
-- Campo de resposta respeita limite de 255 caracteres
-- Envio de mensagem aparece no chat
-
-## 🚀 Como Executar
-
-1. **Clone ou baixe os arquivos** para sua máquina local
-2. **Abra o arquivo `index.html`** em qualquer navegador moderno
-3. **A aplicação funcionará imediatamente** sem necessidade de servidor ou banco de dados
-
-## 📁 Estrutura de Arquivos
-
-```
-Portfolio_MyCloset/
-├── index.html         # Arquivo principal HTML
-├── styles.css         # Estilos CSS
-├── script.js          # Funcionalidades JavaScript
-├── cypress/           # Testes automatizados
-│   └── e2e/
-│       └── atendimento.cy.js
-└── README.md          # Documentação
-```
+- **Filtros por Canal**: WhatsApp, E-mail, Instagram, Telegram
+- **Filtros por Status**: Concluídas, Em Andamento
+- **Chat em Tempo Real**: Interface de conversa integrada
+- **Limite de Caracteres**: Campo de resposta com validação (255 caracteres)
+- **Interface Responsiva**: Design adaptável para diferentes dispositivos
 
 ## 🛠️ Tecnologias Utilizadas
 
-- **HTML5**
-- **CSS3** (Flexbox, Grid, animações)
-- **JavaScript ES6+**
-- **Font Awesome** (ícones)
-- **Cypress** (automação de testes)
+- **Frontend**: HTML5, CSS3, JavaScript (Vanilla)
+- **Testes**: Cypress (E2E Testing)
+- **CI/CD**: GitHub Actions
+- **Deploy**: GitHub Pages
+- **Relatórios**: Mochawesome Reporter
 
-## 🎨 Design e Experiência
+## 📋 Pré-requisitos
 
-- Layout feminino, elegante e responsivo
-- Gradientes, bordas arredondadas, animações e ícones coloridos
-- Interface inspirada em plataformas modernas de atendimento
+- Node.js (versão 18 ou superior)
+- npm ou yarn
+- Git
 
-## 📑 Documentação Complementar
+## 🔧 Instalação
 
-Consulte a [Wiki do Projeto](https://github.com/Angelkel/MyCloset_Angel/wiki) para:
-- Requisitos funcionais e não funcionais
-- Épicos, user stories e critérios de aceite
-- Plano de testes e casos de teste
-- Registro de incidentes
+1. **Clone o repositório**
+   ```bash
+   git clone https://github.com/Angelkel/MyCloset_Angel.git
+   cd MyCloset_Angel
+   ```
+
+2. **Instale as dependências**
+   ```bash
+   npm install
+   ```
+
+3. **Execute a aplicação localmente**
+   ```bash
+   npm start
+   ```
+   A aplicação estará disponível em: `http://localhost:3000`
+
+## 🧪 Testes
+
+### Executar todos os testes
+```bash
+npm test
+```
+
+### Executar testes em modo interativo
+```bash
+npm run test:open
+```
+
+### Executar testes em modo headless
+```bash
+npm run test:headless
+```
+
+### Casos de Teste Implementados
+
+1. **Filtro por Canal - WhatsApp**
+2. **Filtro por Canal - E-mail**
+3. **Filtro por Canal - Instagram**
+4. **Filtro por Canal - Telegram**
+5. **Filtro por Status - Concluídas**
+6. **Filtro por Status - Em Andamento**
+7. **Seleção de mensagem exibe chat**
+8. **Validação de limite de caracteres (255)**
+9. **Envio de mensagem no chat**
+
+## 🔄 CI/CD Pipeline
+
+O projeto utiliza GitHub Actions para automação completa do processo de desenvolvimento:
+
+### Workflows Implementados
+
+#### 1. **CI/CD Principal** (`.github/workflows/ci-cd.yml`)
+- **Trigger**: Push para `main` ou `develop`, Pull Requests
+- **Jobs**:
+  - ✅ **Lint e Validação**: Verificação de código e segurança
+  - 🧪 **Testes E2E**: Execução automática dos testes Cypress
+  - 🔨 **Build**: Otimização e minificação de assets
+  - 🚀 **Deploy**: Deploy automático para GitHub Pages
+  - 📢 **Notificações**: Resumo do deploy e status
+
+#### 2. **Pull Request Checks** (`.github/workflows/pr-checks.yml`)
+- **Trigger**: Pull Requests para `main` ou `develop`
+- **Funcionalidades**:
+  - Validação de segurança
+  - Execução de testes E2E
+  - Comentários automáticos no PR
+  - Upload de resultados de teste
+
+#### 3. **GitHub Pages Deploy** (`.github/workflows/deploy-pages.yml`)
+- **Trigger**: Push para `main`
+- **Funcionalidades**:
+  - Deploy otimizado para GitHub Pages
+  - Configuração automática de ambiente
+  - Controle de concorrência
+
+### Fluxo de Desenvolvimento
+
+```mermaid
+graph LR
+    A[Desenvolvedor] --> B[Push/Pull Request]
+    B --> C[GitHub Actions]
+    C --> D[Lint & Validação]
+    C --> E[Testes E2E]
+    D --> F[Build]
+    E --> F
+    F --> G[Deploy GitHub Pages]
+    G --> H[Notificação]
+```
+
+### Status Badges
+
+[![CI/CD Pipeline](https://github.com/Angelkel/MyCloset_Angel/workflows/CI/CD%20Pipeline%20-%20MyCloset/badge.svg)](https://github.com/Angelkel/MyCloset_Angel/actions/workflows/ci-cd.yml)
+[![PR Checks](https://github.com/Angelkel/MyCloset_Angel/workflows/Pull%20Request%20Checks/badge.svg)](https://github.com/Angelkel/MyCloset_Angel/actions/workflows/pr-checks.yml)
+[![Deploy Pages](https://github.com/Angelkel/MyCloset_Angel/workflows/Deploy%20to%20GitHub%20Pages/badge.svg)](https://github.com/Angelkel/MyCloset_Angel/actions/workflows/deploy-pages.yml)
+
+## 🌐 Deploy
+
+A aplicação está disponível em: **https://angelkel.github.io/MyCloset_Angel/**
+
+### Deploy Automático
+- Qualquer push para a branch `main` dispara o deploy automático
+- O deploy é feito para GitHub Pages
+- Status do deploy é reportado nos Actions do GitHub
+
+## 📊 Monitoramento
+
+### Relatórios de Teste
+- Relatórios HTML gerados automaticamente pelo Mochawesome
+- Screenshots de falhas salvos automaticamente
+- Vídeos de execução dos testes (quando habilitados)
+
+### Métricas de Qualidade
+- Auditoria de segurança automática
+- Validação de HTML e CSS
+- Cobertura de testes E2E
+
+## 🚀 Como Contribuir
+
+1. **Fork** o projeto
+2. **Crie** uma branch para sua feature (`git checkout -b feature/AmazingFeature`)
+3. **Commit** suas mudanças (`git commit -m 'Add some AmazingFeature'`)
+4. **Push** para a branch (`git push origin feature/AmazingFeature`)
+5. **Abra** um Pull Request
+
+### Padrões de Commit
+```
+feat: nova funcionalidade
+fix: correção de bug
+docs: documentação
+style: formatação de código
+refactor: refatoração
+test: testes
+chore: tarefas de manutenção
+```
+
+## 📝 Scripts Disponíveis
+
+| Comando | Descrição |
+|---------|-----------|
+| `npm start` | Inicia servidor local na porta 3000 |
+| `npm run dev` | Inicia servidor com CORS habilitado |
+| `npm test` | Executa todos os testes Cypress |
+| `npm run test:open` | Abre Cypress em modo interativo |
+| `npm run test:headless` | Executa testes em modo headless |
+| `npm run validate` | Executa auditoria de segurança |
+| `npm run build` | Executa processo de build |
+
+## 🔒 Segurança
+
+- Auditoria automática de dependências
+- Validação de vulnerabilidades no pipeline
+- Configuração segura de GitHub Actions
+- Permissões mínimas necessárias
+
+## 📞 Suporte
+
+Para dúvidas ou sugestões:
+- Abra uma [Issue](https://github.com/Angelkel/MyCloset_Angel/issues)
+- Entre em contato através do repositório
 
 ## 📄 Licença
 
-Este projeto foi desenvolvido como demonstração técnica e pode ser usado livremente para fins educacionais e comerciais.
+Este projeto está sob a licença ISC. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
 
 ---
 
-**Desenvolvido com ❤️ para My Closet Angel** 
+**Desenvolvido com ❤️ para otimizar o atendimento ao cliente em lojas de roupas femininas** 
