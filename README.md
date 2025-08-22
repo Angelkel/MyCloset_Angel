@@ -1,6 +1,19 @@
-# MyCloset - Sistema de Atendimento ao Cliente
+# ❣️👗 MyCloset Angel ❣️👗 - Sistema de Atendimento ao Cliente
 
 Uma aplicação web moderna e elegante para gerenciamento de atendimento ao cliente, com interface feminina e clean. Desenvolvida especificamente para lojas de roupas femininas, oferece uma experiência completa de atendimento multi-canal.
+
+## 📑 Documentação Principal
+
+Bem-vinda à documentação do **My Closet Angel**  
+Aqui você encontra os principais documentos do projeto:
+
+- 👗 **[Requisitos Funcionais](https://github.com/Angelkel/MyCloset_Angel/wiki/Requisitos-Funcionais)**
+- 🛠️ **[Requisitos Não Funcionais](https://github.com/Angelkel/MyCloset_Angel/wiki/Requisitos-Nao-Funcionais)**
+- 🧩 **[Épicos e User Stories](https://github.com/Angelkel/MyCloset_Angel/wiki/Epicos-e-User-Stories)**
+- ✅ **[Critérios de Aceite](https://github.com/Angelkel/MyCloset_Angel/wiki/Criterios-de-Aceite)**
+- 🎯 **[Plano de Testes](https://github.com/Angelkel/MyCloset_Angel/wiki/Plano-de-Teste)**
+- 📋 **[Casos de Testes](https://github.com/Angelkel/MyCloset_Angel/wiki/Casos-de-Testes)**
+- 🪲 **[Registro de Incidentes](https://github.com/Angelkel/MyCloset_Angel/wiki/Registro-de-Incidentes)**
 
 ## 🚀 Funcionalidades
 
