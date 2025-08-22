@@ -47,7 +47,7 @@ jobs:
           cp -r cypress/reports dist/ || echo "No reports to copy"
           
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v4
         with:
           path: './dist'
           
