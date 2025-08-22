@@ -37,7 +37,7 @@ jobs:
       run: npm audit --audit-level moderate || echo "Security audit completed"
       
     - name: Validate HTML
-      uses: validator/action@v1
+      uses: validator/action@v5
       with:
         html_files: '*.html'
         
